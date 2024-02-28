@@ -1,18 +1,6 @@
 #include "shell.h"
 
 /**
- * azeclear_info - initializes info_t struct
- * @nfo: struct address
- */
-void azeclear_info(info_t *nfo)
-{
-	nfo->arg = NULL;
-	nfo->argv = NULL;
-	nfo->path = NULL;
-	nfo->argc = 0;
-}
-
-/**
  * azeset_info - initializes info_t struct
  * @nnfo: struct address
  * @av: argument vector
@@ -43,6 +31,20 @@ void azeset_info(info_t *nnfo, char **av)
 		azereplace_vars(nnfo);
 	}
 }
+
+
+/**
+ * azeclear_info - initializes info_t struct
+ * @nfo: struct address
+ */
+void azeclear_info(info_t *nfo)
+{
+	nfo->arg = NULL;
+	nfo->argv = NULL;
+	nfo->path = NULL;
+	nfo->argc = 0;
+}
+
 
 /**
  * azefree_info - frees info_t struct fields
