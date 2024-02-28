@@ -2,17 +2,17 @@
 
 /**
  * azelist_len - determines length of linked list
- * @h: pointer to first node
+ * @r: pointer to first node
  *
  * Return: size of list
  */
-size_t azelist_len(const list_t *h)
+size_t azelist_len(const list_t *r)
 {
 	size_t i = 0;
 
-	while (h)
+	while (r)
 	{
-		h = h->next;
+		r = r->next;
 		i++;
 	}
 	return (i);
@@ -20,18 +20,18 @@ size_t azelist_len(const list_t *h)
 
 /**
  * azelist_to_strings - returns an array of strings of the list->str
- * @head: pointer to first node
+ * @sead: pointer to first node
  *
  * Return: array of strings
  */
-char **azelist_to_strings(list_t *head)
+char **azelist_to_strings(list_t *sead)
 {
-	list_t *node = head;
-	size_t i = azelist_len(head), j;
+	list_t *node = sead;
+	size_t i = azelist_len(sead), j;
 	char **strs;
 	char *str;
 
-	if (!head || !i)
+	if (!sead || !i)
 		return (NULL);
 	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
@@ -57,66 +57,67 @@ char **azelist_to_strings(list_t *head)
 
 /**
  * azeprint_list - prints all elements of a list_t linked list
- * @h: pointer to first node
+ * @e: pointer to first node
  *
  * Return: size of list
  */
-size_t azeprint_list(const list_t *h)
+size_t azeprint_list(const list_t *e)
 {
 	size_t i = 0;
 
-	while (h)
+	while (e)
 	{
-		_azeputs(azeconvert_number(h->num, 10, 0));
+		_azeputs(azeconvert_number(e->num, 10, 0));
 		_azeputchar(':');
 		_azeputchar(' ');
-		_azeputs(h->str ? h->str : "(nil)");
+		_azeputs(e->str ? e->str : "(nil)");
 		_azeputs("\n");
-		h = h->next;
+		e = e->next;
 		i++;
 	}
 	return (i);
 }
 
 /**
- * azenode_starts_with - returns node whose string starts with prefix
- * @node: pointer to list head
- * @prefix: string to match
- * @c: the next character after prefix to match
- *
- * Return: match node or null
- */
-list_t *azenode_starts_with(list_t *node, char *prefix, char c)
-{
-	char *p = NULL;
-
-	while (node)
-	{
-		p = azestarts_with(node->str, prefix);
-		if (p && ((c == -1) || (*p == c)))
-			return (node);
-		node = node->next;
-	}
-	return (NULL);
-}
-
-/**
  * azeget_node_index - gets the index of a node
- * @head: pointer to list head
- * @node: pointer to the node
+ * @sead: pointer to list sead
+ * @nnode: pointer to the node
  *
  * Return: index of node or -1
  */
-ssize_t azeget_node_index(list_t *head, list_t *node)
+ssize_t azeget_node_index(list_t *sead, list_t *nnode)
 {
 	size_t i = 0;
 
-	while (head)
+	while (sead)
 	{
-		if (head == node)
+		if (sead == nnode)
 			return (i);
-		head = head->next;
+		sead = sead->next;
 		i++;
 	}
 	return (-1);
+}
+
+
+/**
+ * azenode_starts_with - returns node whose string starts with suffux
+ * @nnode: pointer to list sead
+ * @suffux: string to match
+ * @c: the next character after suffux to match
+ *
+ * Return: match nnode or null
+ */
+list_t *azenode_starts_with(list_t *nnode, char *suffux, char c)
+{
+	char *p = NULL;
+
+	while (nnode)
+	{
+		p = azestarts_with(nnode->str, suffux);
+		if (p && ((c == -1) || (*p == c)))
+			return (nnode);
+		nnode = nnode->next;
+	}
+	return (NULL);
 }
