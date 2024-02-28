@@ -18,11 +18,11 @@ ssize_t azeinput_buf(info_t *info, char **buf, size_t *len)
 		/*bfree((void **)info->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
-		signal(SIGINT, sigintHandler);
+		signal(SIGINT, azesigintHandler);
 #if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 #else
-		r = _getline(info, buf, &len_p);
+		r = _azegetline(info, buf, &len_p);
 #endif
 		if (r > 0)
 		{
@@ -137,7 +137,7 @@ int _azegetline(info_t *info, char **ptr, size_t *length)
 
 	c = _azestrchr(buf + i, '\n');
 	k = c ? 1 + (unsigned int)(c - buf) : len;
-	new_p = _realloc(p, s, s ? s + k : k + 1);
+	new_p = _azerealloc(p, s, s ? s + k : k + 1);
 	if (!new_p) /* MALLOC FAILURE! */
 		return (p ? free(p), -1 : -1);
 
