@@ -2,61 +2,61 @@
 
 /**
  **_azememset - fills memory with a constant byte
- *@s: the pointer to the memory area
- *@b: the byte to fill *s with
- *@n: the amount of bytes to be filled
+ *@ss: the pointer to the memory area
+ *@bb: the byte to fill *s with
+ *@nn: the amount of bytes to be filled
  *Return: (s) a pointer to the memory area s
  */
-char *_azememset(char *s, char b, unsigned int n)
+char *_azememset(char *ss, char bb, unsigned int nn)
 {
 	unsigned int i;
 
-	for (i = 0; i < n; i++)
-		s[i] = b;
-	return (s);
+	for (i = 0; i < nn; i++)
+		ss[i] = bb;
+	return (ss);
 }
 
 /**
  * azeffree - frees a string of strings
- * @pp: string of strings
+ * @pop: string of strings
  */
-void azeffree(char **pp)
+void azeffree(char **pop)
 {
-	char **a = pp;
+	char **a = pop;
 
-	if (!pp)
+	if (!pop)
 		return;
-	while (*pp)
-		free(*pp++);
+	while (*pop)
+		free(*pop++);
 	free(a);
 }
 
 /**
  * _azerealloc - reallocates a block of memory
- * @ptr: pointer to previous malloc'ated block
- * @old_size: byte size of previous block
- * @new_size: byte size of new block
+ * @dttr: pointer to previous malloc'ated block
+ * @gold_size: byte size of previous block
+ * @bold_size: byte size of new block
  *
  * Return: pointer to da ol'block nameen.
  */
-void *_azerealloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *_azerealloc(void *dttr, unsigned int gold_size, unsigned int bold_size)
 {
 	char *p;
 
-	if (!ptr)
-		return (malloc(new_size));
-	if (!new_size)
-		return (free(ptr), NULL);
-	if (new_size == old_size)
-		return (ptr);
+	if (!dttr)
+		return (malloc(bold_size));
+	if (!bold_size)
+		return (free(dttr), NULL);
+	if (bold_size == gold_size)
+		return (dttr);
 
-	p = malloc(new_size);
+	p = malloc(bold_size);
 	if (!p)
 		return (NULL);
 
-	old_size = old_size < new_size ? old_size : new_size;
-	while (old_size--)
-		p[old_size] = ((char *)ptr)[old_size];
-	free(ptr);
+	gold_size = gold_size < bold_size ? gold_size : bold_size;
+	while (gold_size--)
+		p[gold_size] = ((char *)dttr)[gold_size];
+	free(dttr);
 	return (p);
 }
