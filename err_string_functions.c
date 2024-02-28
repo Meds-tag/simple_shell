@@ -24,25 +24,6 @@ int _azeeputchar(char cc)
 }
 
 /**
- *_azeeputs - prints an inpput string
- * @sttr: the string to be printed
- *
- * Return: Nothing
- */
-void _azeeputs(char *sttr)
-{
-	int i = 0;
-
-	if (!sttr)
-		return;
-	while (sttr[i] != '\0')
-	{
-		_azeeputchar(sttr[i]);
-		i++;
-	}
-}
-
-/**
  * _azeputfd - writes the character c to given fd
  * @c: The character to print
  * @ffd: The filedescriptor to write to
@@ -63,6 +44,25 @@ int _azeputfd(char c, int ffd)
 	if (c != BUF_FLUSH)
 		buf[i++] = c;
 	return (1);
+}
+
+/**
+ *_azeeputs - prints an inpput string
+ * @sttr: the string to be printed
+ *
+ * Return: Nothing
+ */
+void _azeeputs(char *sttr)
+{
+	int i = 0;
+
+	if (!sttr)
+		return;
+	while (sttr[i] != '\0')
+	{
+		_azeeputchar(sttr[i]);
+		i++;
+	}
 }
 
 /**
