@@ -59,18 +59,18 @@ typedef struct liststr
  *@argc: the argument count
  *@line_count: the error count
  *@err_num: the error code for exit()s
- *@linecount_flag: if on count this line of input
+ *@linecount_flag: if on co unt this line of input
  *@fname: the program filename
  *@env: linked list local copy of environ
- *@environ: custom modified copy of environ from LL env
+ *@environ: custom modifi ed copy of environ from LL env
  *@history: the history node
  *@alias: the alias node
  *@env_changed: on if environ was changed
- *@status: the return status of the last exec'd command
+ *@status: the return  status of the last exec'd command
  *@cmd_buf: address of pointer to cmd_buf, on if chaining
  *@cmd_buf_type: CMD_type ||, &&, ;
- *@readfd: the fd from which to read line input
- *@histcount: the history line number count
+ *@readfd: the fd fro m which to read line input
+ *@histcount: the his tory line number count
  */
 typedef struct passinfo
 {
@@ -117,11 +117,6 @@ int azefind_builtin(info_t *);
 void azefind_cmd(info_t *);
 void azefork_cmd(info_t *);
 
-/* path.c */
-int azeis_cmd(info_t *, char *);
-char *azedup_chars(char *, int, int);
-char *azefind_path(info_t *, char *, char *);
-
 /* loophsh.c */
 int azeloophsh(char **);
 
@@ -148,6 +143,11 @@ char *_azestrncpy(char *, char *, int);
 char *_azestrncat(char *, char *, int);
 char *_azestrchr(char *, char);
 
+/* path.c */
+int azeis_cmd(info_t *, char *);
+char *azedup_chars(char *, int, int);
+char *azefind_path(info_t *, char *, char *);
+
 /* string_functions4.c */
 char **azestrtow(char *, char *);
 char **azestrtow2(char *, char);
@@ -166,17 +166,17 @@ int azeis_delim(char, char *);
 int _azeisalpha(int);
 int _azeatoi(char *);
 
+/* builtin_emulators.c */
+int _azemyexit(info_t *);
+int _azemycd(info_t *);
+int _azemyhelp(info_t *);
+
 /* more_functions2.c */
 int _azeerratoi(char *);
 void azeprint_error(info_t *, char *);
 int azeprint_d(int, int);
 char *azeconvert_number(long int, int, int);
 void azeremove_comments(char *);
-
-/* builtin_emulators.c */
-int _azemyexit(info_t *);
-int _azemycd(info_t *);
-int _azemyhelp(info_t *);
 
 /* builtin_emulators2.c */
 int _azemyhistory(info_t *);
@@ -218,18 +218,19 @@ size_t azeprint_list_str(const list_t *);
 int azedelete_node_at_index(list_t **, unsigned int);
 void azefree_list(list_t **);
 
-/* liststr2.c module */
-size_t azelist_len(const list_t *);
-char **azelist_to_strings(list_t *);
-size_t azeprint_list(const list_t *);
-list_t *azenode_starts_with(list_t *, char *, char);
-ssize_t azeget_node_index(list_t *, list_t *);
-
 /* chain.c */
 int azeis_chain(info_t *, char *, size_t *);
 void azecheck_chain(info_t *, char *, size_t *, size_t, size_t);
 int azereplace_alias(info_t *);
 int azereplace_vars(info_t *);
 int azereplace_string(char **, char *);
+
+
+/* liststr2.c module */
+size_t azelist_len(const list_t *);
+char **azelist_to_strings(list_t *);
+size_t azeprint_list(const list_t *);
+list_t *azenode_starts_with(list_t *, char *, char);
+ssize_t azeget_node_index(list_t *, list_t *);
 
 #endif
