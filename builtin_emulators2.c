@@ -24,19 +24,6 @@ int azeunset_alias(info_t *info, char *sttr)
 }
 
 /**
- * _azemyhistory - displays the hisstory list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containning potential arguments. Used to maintain
- *        constant functiion prototype.
- *  Return: Always 0
- */
-int _azemyhistory(info_t *innfo)
-{
-	azeprint_list(innfo->history);
-	return (0);
-}
-
-/**
  * azeset_alias - sets aliaas to string
  * @info: parameter struct
  * @str: the string alias
@@ -55,6 +42,19 @@ int azeset_alias(info_t *info, char *sttr)
 
 	azeunset_alias(info, sttr);
 	return (azeadd_node_end(&(info->alias), sttr, 0) == NULL);
+}
+
+/**
+ * _azemyhistory - displays the hisstory list, one command by line, preceded
+ *              with line numbers, starting at 0.
+ * @info: Structure containning potential arguments. Used to maintain
+ *        constant functiion prototype.
+ *  Return: Always 0
+ */
+int _azemyhistory(info_t *innfo)
+{
+	azeprint_list(innfo->history);
+	return (0);
 }
 
 /**
