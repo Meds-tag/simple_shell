@@ -56,14 +56,14 @@ int azefind_builtin(info_t *info)
 {
 	int i, built_in_ret = -1;
 	builtin_table builtintbl[] = {
-		{"exit", _myexit},
-		{"env", _myenv},
-		{"help", _myhelp},
-		{"history", _myhistory},
-		{"setenv", _mysetenv},
-		{"unsetenv", _myunsetenv},
-		{"cd", _mycd},
-		{"alias", _myalias},
+		{"exit", _azemyexit},
+		{"env", _azemyenv},
+		{"help", _azemyhelp},
+		{"history", _azemyhistory},
+		{"setenv", _azemysetenv},
+		{"unsetenv", _azemyunsetenv},
+		{"cd", _azemycd},
+		{"alias", _azemyalias},
 		{NULL, NULL}
 	};
 
