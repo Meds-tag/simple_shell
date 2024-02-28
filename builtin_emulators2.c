@@ -2,12 +2,12 @@
 
 /**
  * azeunset_alias - sets alias to string
- * @innfo: parameter struct
+ * @ifo: parameter struct
  * @sttr: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int azeunset_alias(info_t *innfo, char *sttr)
+int azeunset_alias(info_t *ifo, char *sttr)
 {
 	char *p, c;
 	int ret;
@@ -17,8 +17,8 @@ int azeunset_alias(info_t *innfo, char *sttr)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = azedelete_node_at_index(&(innfo->alias),
-		azeget_node_index(innfo->alias, azenode_starts_with(innfo->alias, sttr, -1)));
+	ret = azedelete_node_at_index(&(ifo->alias),
+		azeget_node_index(ifo->alias, azenode_starts_with(ifo->alias, sttr, -1)));
 	*p = c;
 	return (ret);
 }
