@@ -113,123 +113,123 @@ typedef struct builtin
 
 /* hsh.c */
 int hsh(info_t *, char **);
-int find_builtin(info_t *);
-void find_cmd(info_t *);
-void fork_cmd(info_t *);
+int azefind_builtin(info_t *);
+void azefind_cmd(info_t *);
+void azefork_cmd(info_t *);
 
 /* path.c */
-int is_cmd(info_t *, char *);
-char *dup_chars(char *, int, int);
-char *find_path(info_t *, char *, char *);
+int azeis_cmd(info_t *, char *);
+char *azedup_chars(char *, int, int);
+char *azefind_path(info_t *, char *, char *);
 
 /* loophsh.c */
-int loophsh(char **);
+int azeloophsh(char **);
 
 /* err_string_functions.c */
-void _eputs(char *);
-int _eputchar(char);
-int _putfd(char c, int fd);
-int _putsfd(char *str, int fd);
+void _azeeputs(char *);
+int _azeeputchar(char);
+int _azeputfd(char c, int fd);
+int _azeputsfd(char *str, int fd);
 
 /* string_functions.c */
-int _strlen(char *);
-int _strcmp(char *, char *);
-char *starts_with(const char *, const char *);
-char *_strcat(char *, char *);
+int _azestrlen(char *);
+int _azestrcmp(char *, char *);
+char *azestarts_with(const char *, const char *);
+char *_azestrcat(char *, char *);
 
 /* string_functions2.c */
-char *_strcpy(char *, char *);
-char *_strdup(const char *);
-void _puts(char *);
-int _putchar(char);
+char *_azestrcpy(char *, char *);
+char *_azestrdup(const char *);
+void _azeputs(char *);
+int _azeputchar(char);
 
 /* string_functions3.c */
-char *_strncpy(char *, char *, int);
-char *_strncat(char *, char *, int);
-char *_strchr(char *, char);
+char *_azestrncpy(char *, char *, int);
+char *_azestrncat(char *, char *, int);
+char *_azestrchr(char *, char);
 
 /* string_functions4.c */
-char **strtow(char *, char *);
-char **strtow2(char *, char);
+char **azestrtow(char *, char *);
+char **azestrtow2(char *, char);
 
 /* memory_functions */
-char *_memset(char *, char, unsigned int);
-void ffree(char **);
-void *_realloc(void *, unsigned int, unsigned int);
+char *_azememset(char *, char, unsigned int);
+void azeffree(char **);
+void *_azerealloc(void *, unsigned int, unsigned int);
 
 /* memory_functions2.c */
-int bfree(void **);
+int azebfree(void **);
 
 /* more_functions.c */
-int interactive(info_t *);
-int is_delim(char, char *);
-int _isalpha(int);
-int _atoi(char *);
+int azeinteractive(info_t *);
+int azeis_delim(char, char *);
+int _azeisalpha(int);
+int _azeatoi(char *);
 
 /* more_functions2.c */
-int _erratoi(char *);
-void print_error(info_t *, char *);
-int print_d(int, int);
-char *convert_number(long int, int, int);
-void remove_comments(char *);
+int _azeerratoi(char *);
+void azeprint_error(info_t *, char *);
+int azeprint_d(int, int);
+char *azeconvert_number(long int, int, int);
+void azeremove_comments(char *);
 
 /* builtin_emulators.c */
-int _myexit(info_t *);
-int _mycd(info_t *);
-int _myhelp(info_t *);
+int _azemyexit(info_t *);
+int _azemycd(info_t *);
+int _azemyhelp(info_t *);
 
 /* builtin_emulators2.c */
-int _myhistory(info_t *);
-int _myalias(info_t *);
+int _azemyhistory(info_t *);
+int _azemyalias(info_t *);
 
 /* getline.c module */
-ssize_t get_input(info_t *);
-int _getline(info_t *, char **, size_t *);
-void sigintHandler(int);
+ssize_t azeget_input(info_t *);
+int _azegetline(info_t *, char **, size_t *);
+void azesigintHandler(int);
 
 /* info.c module */
-void clear_info(info_t *);
-void set_info(info_t *, char **);
-void free_info(info_t *, int);
+void azeclear_info(info_t *);
+void azeset_info(info_t *, char **);
+void azeree_info(info_t *, int);
 
 /* env.c module */
-char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
-int _mysetenv(info_t *);
-int _myunsetenv(info_t *);
-int populate_env_list(info_t *);
+char *_azegetenv(info_t *, const char *);
+int _azemyenv(info_t *);
+int _azemysetenv(info_t *);
+int _azemyunsetenv(info_t *);
+int azepopulate_env_list(info_t *);
 
 /* env2.c module */
-char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+char **azeget_environ(info_t *);
+int _azeunsetenv(info_t *, char *);
+int _azesetenv(info_t *, char *, char *);
 
 /* file_io_functions.c */
-char *get_history_file(info_t *info);
-int write_history(info_t *info);
-int read_history(info_t *info);
-int build_history_list(info_t *info, char *buf, int linecount);
-int renumber_history(info_t *info);
+char *azeget_history_file(info_t *info);
+int azewrite_history(info_t *info);
+int azeread_history(info_t *info);
+int azebuild_history_list(info_t *info, char *buf, int linecount);
+int azerenumber_history(info_t *info);
 
 /* liststr.c module */
-list_t *add_node(list_t **, const char *, int);
-list_t *add_node_end(list_t **, const char *, int);
-size_t print_list_str(const list_t *);
-int delete_node_at_index(list_t **, unsigned int);
-void free_list(list_t **);
+list_t *azeadd_node(list_t **, const char *, int);
+list_t *azeadd_node_end(list_t **, const char *, int);
+size_t azeprint_list_str(const list_t *);
+int azedelete_node_at_index(list_t **, unsigned int);
+void azefree_list(list_t **);
 
 /* liststr2.c module */
-size_t list_len(const list_t *);
-char **list_to_strings(list_t *);
-size_t print_list(const list_t *);
-list_t *node_starts_with(list_t *, char *, char);
-ssize_t get_node_index(list_t *, list_t *);
+size_t azelist_len(const list_t *);
+char **azelist_to_strings(list_t *);
+size_t azeprint_list(const list_t *);
+list_t *azenode_starts_with(list_t *, char *, char);
+ssize_t azeget_node_index(list_t *, list_t *);
 
 /* chain.c */
-int is_chain(info_t *, char *, size_t *);
-void check_chain(info_t *, char *, size_t *, size_t, size_t);
-int replace_alias(info_t *);
-int replace_vars(info_t *);
-int replace_string(char **, char *);
+int azeis_chain(info_t *, char *, size_t *);
+void azecheck_chain(info_t *, char *, size_t *, size_t, size_t);
+int azereplace_alias(info_t *);
+int azereplace_vars(info_t *);
+int azereplace_string(char **, char *);
 
 #endif
