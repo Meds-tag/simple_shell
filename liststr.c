@@ -2,53 +2,53 @@
 
 /**
  * azeadd_node - adds a node to the start of the list
- * @head: address of pointer to head node
+ * @ead: address of pointer to ead node
  * @str: str field of node
  * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *azeadd_node(list_t **head, const char *str, int num)
+list_t *azeadd_node(list_t **ead, const char *str, int num)
 {
-	list_t *new_head;
+	list_t *new_ead;
 
-	if (!head)
+	if (!ead)
 		return (NULL);
-	new_head = malloc(sizeof(list_t));
-	if (!new_head)
+	new_ead = malloc(sizeof(list_t));
+	if (!new_ead)
 		return (NULL);
-	_azememset((void *)new_head, 0, sizeof(list_t));
-	new_head->num = num;
+	_azememset((void *)new_ead, 0, sizeof(list_t));
+	new_ead->num = num;
 	if (str)
 	{
-		new_head->str = _azestrdup(str);
-		if (!new_head->str)
+		new_ead->str = _azestrdup(str);
+		if (!new_ead->str)
 		{
-			free(new_head);
+			free(new_ead);
 			return (NULL);
 		}
 	}
-	new_head->next = *head;
-	*head = new_head;
-	return (new_head);
+	new_ead->next = *ead;
+	*ead = new_ead;
+	return (new_ead);
 }
 
 /**
  * azeadd_node_end - adds a node to the end of the list
- * @head: address of pointer to head node
+ * @ead: address of pointer to ead node
  * @str: str field of node
  * @num: node index used by history
  *
  * Return: size of list
  */
-list_t *azeadd_node_end(list_t **head, const char *str, int num)
+list_t *azeadd_node_end(list_t **ead, const char *str, int num)
 {
 	list_t *new_node, *node;
 
-	if (!head)
+	if (!ead)
 		return (NULL);
 
-	node = *head;
+	node = *ead;
 	new_node = malloc(sizeof(list_t));
 	if (!new_node)
 		return (NULL);
@@ -70,7 +70,7 @@ list_t *azeadd_node_end(list_t **head, const char *str, int num)
 		node->next = new_node;
 	}
 	else
-		*head = new_node;
+		*ead = new_node;
 	return (new_node);
 }
 
@@ -96,28 +96,28 @@ size_t azeprint_list_str(const list_t *h)
 
 /**
  * azedelete_node_at_index - deletes node at given index
- * @head: address of pointer to first node
+ * @ead: address of pointer to first node
  * @index: index of node to delete
  *
  * Return: 1 on success, 0 on failure
  */
-int azedelete_node_at_index(list_t **head, unsigned int index)
+int azedelete_node_at_index(list_t **ead, unsigned int index)
 {
 	list_t *node, *prev_node;
 	unsigned int i = 0;
 
-	if (!head || !*head)
+	if (!ead || !*ead)
 		return (0);
 
 	if (!index)
 	{
-		node = *head;
-		*head = (*head)->next;
+		node = *ead;
+		*ead = (*ead)->next;
 		free(node->str);
 		free(node);
 		return (1);
 	}
-	node = *head;
+	node = *ead;
 	while (node)
 	{
 		if (i == index)
@@ -136,18 +136,18 @@ int azedelete_node_at_index(list_t **head, unsigned int index)
 
 /**
  * azefree_list - frees all nodes of a list
- * @head_ptr: address of pointer to head node
+ * @ead_ptr: address of pointer to ead node
  *
  * Return: void
  */
-void azefree_list(list_t **head_ptr)
+void azefree_list(list_t **ead_ptr)
 {
-	list_t *node, *next_node, *head;
+	list_t *node, *next_node, *ead;
 
-	if (!head_ptr || !*head_ptr)
+	if (!ead_ptr || !*ead_ptr)
 		return;
-	head = *head_ptr;
-	node = head;
+	ead = *ead_ptr;
+	node = ead;
 	while (node)
 	{
 		next_node = node->next;
@@ -155,5 +155,5 @@ void azefree_list(list_t **head_ptr)
 		free(node);
 		node = next_node;
 	}
-	*head_ptr = NULL;
+	*ead_ptr = NULL;
 }
