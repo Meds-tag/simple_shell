@@ -67,7 +67,7 @@ int _azesetenv(info_t *info, char *var, char *value)
 	if (!var || !value)
 		return (0);
 
-	buf = malloc(_strlen(var) + _azestrlen(value) + 2);
+	buf = malloc(_azestrlen(var) + _azestrlen(value) + 2);
 	if (!buf)
 		return (1);
 	_azestrcpy(buf, var);
