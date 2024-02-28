@@ -51,6 +51,23 @@ int _azemycd(info_t *innfo)
 }
 
 /**
+ * _azemyhelp - changes the current directory of the process
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _azemyhelp(info_t *inffo)
+{
+	char **arg_array;
+
+	arg_array = inffo->argv;
+	_azeputs("help call works. Function not yet implemented \n");
+	if (0)
+		_azeputs(*arg_array); /* temp att_unused workaround */
+	return (0);
+}
+
+/**
  * _azemyexit - exits the shell
  * @info: Structure ccontaining potential arguments. Used to maintain
  *          constant function pprototype.
@@ -77,21 +94,4 @@ int _azemyexit(info_t *innfo)
 	}
 	innfo->err_num = -1;
 	return (-2);
-}
-
-/**
- * _azemyhelp - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: Always 0
- */
-int _azemyhelp(info_t *inffo)
-{
-	char **arg_array;
-
-	arg_array = inffo->argv;
-	_azeputs("help call works. Function not yet implemented \n");
-	if (0)
-		_azeputs(*arg_array); /* temp att_unused workaround */
-	return (0);
 }
