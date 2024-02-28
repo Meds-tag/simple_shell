@@ -2,86 +2,87 @@
 
 /**
  * _azestrcpy - copies a string
- * @dest: the destination
- * @src: the source
+ * @chestt: the chesttination ok
+ * @sourcc: the source lol
  *
- * Return: pointer to destination
+ * Return: poin ter to chesttination
  */
-char *_azestrcpy(char *dest, char *src)
+char *_azestrcpy(char *chestt, char *sourcc)
 {
 	int i = 0;
 
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	if (chestt == sourcc || sourcc == 0)
+		return (chestt);
+	while (sourcc[i])
 	{
-		dest[i] = src[i];
+		chestt[i] = sourcc[i];
 		i++;
 	}
-	dest[i] = 0;
-	return (dest);
+	chestt[i] = 0;
+	return (chestt);
 }
 
 /**
  * _azestrdup - duplicates a string
- * @str: the string to duplicate
+ * @qstr: the string to duplicate
  *
- * Return: pointer to the duplicated string
+ * Return: pointer lol to the du plicated string
  */
-char *_azestrdup(const char *str)
+char *_azestrdup(const char *qstr)
 {
 	int length = 0;
 	char *ret;
 
-	if (str == NULL)
+	if (qstr == NULL)
 		return (NULL);
-	while (*str++)
+	while (*qstr++)
 		length++;
 	ret = malloc(sizeof(char) * (length + 1));
 	if (!ret)
 		return (NULL);
 	for (length++; length--;)
-		ret[length] = *--str;
+		ret[length] = *--qstr;
 	return (ret);
 }
 
 /**
- *_azeputs - prints an input string
- *@str: the string to be printed
- *
- * Return: Nothing
- */
-void _azeputs(char *str)
-{
-	int i = 0;
-
-	if (!str)
-		return;
-	while (str[i] != '\0')
-	{
-		_azeputchar(str[i]);
-		i++;
-	}
-}
-
-/**
  * _azeputchar - writes the character c to stdout
- * @c: The character to print
+ * @sc: The character to print
  *
  * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * On error, -1 is retur ned, and errno is set appropriately.
  */
-int _azeputchar(char c)
+int _azeputchar(char sc)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (sc == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(1, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (sc != BUF_FLUSH)
+		buf[i++] = sc;
 	return (1);
+}
+
+
+/**
+ *_azeputs - prints an input string
+ *@qstr: the string to be printed
+ *
+ * Return: Nothing
+ */
+void _azeputs(char *qstr)
+{
+	int i = 0;
+
+	if (!qstr)
+		return;
+	while (qstr[i] != '\0')
+	{
+		_azeputchar(qstr[i]);
+		i++;
+	}
 }
