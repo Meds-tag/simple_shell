@@ -108,7 +108,7 @@ int _azemyalias(info_t *info)
 		if (p)
 			azeset_alias(info, info->argv[i]);
 		else
-			azeprint_alias(node_starts_with(info->alias, info->argv[i], '='));
+			azeprint_alias(azenode_starts_with(info->alias, info->argv[i], '='));
 	}
 
 	return (0);
