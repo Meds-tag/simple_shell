@@ -52,7 +52,7 @@ int _azemycd(info_t *innfo)
 
 /**
  * _azemyhelp - changes the current directory of the process
- * @innfo: Structure containing potential arguments. Used to maintain
+ * @inffo: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
