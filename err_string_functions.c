@@ -1,25 +1,6 @@
 #include "shell.h"
 
 /**
- *_azeeputs - prints an inpput string
- * @str: the string to be printed
- *
- * Return: Nothing
- */
-void _azeeputs(char *sttr)
-{
-	int i = 0;
-
-	if (!sttr)
-		return;
-	while (sttr[i] != '\0')
-	{
-		_azeeputchar(sttr[i]);
-		i++;
-	}
-}
-
-/**
  * _azeeputchar - writes the charactter c to stderr
  * @c: The character to print
  *
@@ -39,6 +20,25 @@ int _azeeputchar(char cc)
 	if (cc != BUF_FLUSH)
 		buf[i++] = cc;
 	return (1);
+}
+
+/**
+ *_azeeputs - prints an inpput string
+ * @str: the string to be printed
+ *
+ * Return: Nothing
+ */
+void _azeeputs(char *sttr)
+{
+	int i = 0;
+
+	if (!sttr)
+		return;
+	while (sttr[i] != '\0')
+	{
+		_azeeputchar(sttr[i]);
+		i++;
+	}
 }
 
 /**
