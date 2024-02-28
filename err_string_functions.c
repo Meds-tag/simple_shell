@@ -3,7 +3,7 @@
 /**
  * _azeeputchar - writes the charactter c to stderr
  *added line
- * @c: The character to print
+ * @cc: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
@@ -25,7 +25,7 @@ int _azeeputchar(char cc)
 
 /**
  *_azeeputs - prints an inpput string
- * @str: the string to be printed
+ * @sttr: the string to be printed
  *
  * Return: Nothing
  */
@@ -45,7 +45,7 @@ void _azeeputs(char *sttr)
 /**
  * _azeputfd - writes the character c to given fd
  * @c: The character to print
- * @fd: The filedescriptor to write to
+ * @ffd: The filedescriptor to write to
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
@@ -67,8 +67,8 @@ int _azeputfd(char c, int ffd)
 
 /**
  *_azeputsfd - prints an input string
- * @str: the string to be printed
- * @fd: the filedescriptor to write to
+ * @sttr: the string to be printed
+ * @ffd: the filedescriptor to write to
  *
  * Return: the number of chars put
  */
