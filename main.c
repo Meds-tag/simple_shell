@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/wait.h> // Include sys/wait.h for wait function
+#include <sys/wait.h> /* Include sys/wait.h for wait function */
 
 #define BUFFER_SIZE 1024
 #define DELIMITERS " \t\r\n\a"
