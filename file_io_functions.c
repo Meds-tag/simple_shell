@@ -2,16 +2,16 @@
 
 /**
  * azeget_history_file - gets the history file
- * @info: parameter struct
+ * @iznfo: parameter struct
  *
  * Return: allocated string containg history file
  */
 
-char *azeget_history_file(info_t *info)
+char *azeget_history_file(info_t *iznfo)
 {
 	char *buf, *dir;
 
-	dir = _azegetenv(info, "HOME=");
+	dir = _azegetenv(iznfo, "HOME=");
 	if (!dir)
 		return (NULL);
 	buf = malloc(sizeof(char) * (_azestrlen(dir) + _azestrlen(HIST_FILE) + 2));
@@ -26,14 +26,14 @@ char *azeget_history_file(info_t *info)
 
 /**
  * azewrite_history - creates a file, or appends to an existing file
- * @info: the parameter struct
+ * @iznfo: the parameter struct
  *
  * Return: 1 on success, else -1
  */
-int azewrite_history(info_t *info)
+int azewrite_history(info_t *iznfo)
 {
 	ssize_t fd;
-	char *filename = azeget_history_file(info);
+	char *filename = azeget_history_file(iznfo);
 	list_t *node = NULL;
 
 	if (!filename)
@@ -43,7 +43,7 @@ int azewrite_history(info_t *info)
 	free(filename);
 	if (fd == -1)
 		return (-1);
-	for (node = info->history; node; node = node->next)
+	for (node = iznfo->history; node; node = node->next)
 	{
 		_azeputsfd(node->str, fd);
 		_azeputfd('\n', fd);
@@ -55,16 +55,16 @@ int azewrite_history(info_t *info)
 
 /**
  * azeread_history - reads history from file
- * @info: the parameter struct
+ * @iznfo: the parameter struct
  *
  * Return: histcount on success, 0 otherwise
  */
-int azeread_history(info_t *info)
+int azeread_history(info_t *iznfo)
 {
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
-	char *buf = NULL, *filename = azeget_history_file(info);
+	char *buf = NULL, *filename = azeget_history_file(iznfo);
 
 	if (!filename)
 		return (0);
@@ -89,49 +89,49 @@ int azeread_history(info_t *info)
 		if (buf[i] == '\n')
 		{
 			buf[i] = 0;
-			azebuild_history_list(info, buf + last, linecount++);
+			azebuild_history_list(iznfo, buf + last, linecount++);
 			last = i + 1;
 		}
 	if (last != i)
-		azebuild_history_list(info, buf + last, linecount++);
+		azebuild_history_list(iznfo, buf + last, linecount++);
 	free(buf);
-	info->histcount = linecount;
-	while (info->histcount-- >= HIST_MAX)
-		azedelete_node_at_index(&(info->history), 0);
-	azerenumber_history(info);
-	return (info->histcount);
+	iznfo->histcount = linecount;
+	while (iznfo->histcount-- >= HIST_MAX)
+		azedelete_node_at_index(&(iznfo->history), 0);
+	azerenumber_history(iznfo);
+	return (iznfo->histcount);
 }
 
 /**
  * azebuild_history_list - adds entry to a history linked list
- * @info: Structure containing potential arguments. Used to maintain
+ * @iznfo: Structure containing potential arguments. Used to maintain
  * @buf: buffer
  * @linecount: the history linecount, histcount
  *
  * Return: Always 0
  */
-int azebuild_history_list(info_t *info, char *buf, int linecount)
+int azebuild_history_list(info_t *iznfo, char *buf, int linecount)
 {
 	list_t *node = NULL;
 
 	if (info->history)
-		node = info->history;
+		node = iznfo->history;
 	azeadd_node_end(&node, buf, linecount);
 
-	if (!info->history)
-		info->history = node;
+	if (!iznfo->history)
+		iznfo->history = node;
 	return (0);
 }
 
 /**
  * azerenumber_history - renumbers the history linked list after changes
- * @info: Structure containing potential arguments. Used to maintain
+ * @iznfo: Structure containing potential arguments. Used to maintain
  *
  * Return: the new histcount
  */
-int azerenumber_history(info_t *info)
+int azerenumber_history(info_t *iznfo)
 {
-	list_t *node = info->history;
+	list_t *node = iznfo->history;
 	int i = 0;
 
 	while (node)
@@ -139,5 +139,5 @@ int azerenumber_history(info_t *info)
 		node->num = i++;
 		node = node->next;
 	}
-	return (info->histcount = i);
+	return (iznfo->histcount = i);
 }
