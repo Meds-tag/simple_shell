@@ -10,7 +10,7 @@ void azeset_info(info_t *nnfo, char **av)
 	int i = 0;
 
 	nnfo->fname = av[0];
-	if (nfo->arg)
+	if (nnfo->arg)
 	{
 		nnfo->argv = azestrtow(nnfo->arg, " \t");
 		if (!nnfo->argv)
@@ -19,7 +19,7 @@ void azeset_info(info_t *nnfo, char **av)
 			nnfo->argv = malloc(sizeof(char *) * 2);
 			if (nnfo->argv)
 			{
-				nnfo->argv[0] = _azestrdup(info->arg);
+				nnfo->argv[0] = _azestrdup(nnfo->arg);
 				nnfo->argv[1] = NULL;
 			}
 		}
