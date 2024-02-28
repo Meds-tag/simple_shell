@@ -114,7 +114,7 @@ int azebuild_history_list(info_t *iznfo, char *buf, int linecount)
 {
 	list_t *node = NULL;
 
-	if (info->history)
+	if (iznfo->history)
 		node = iznfo->history;
 	azeadd_node_end(&node, buf, linecount);
 
