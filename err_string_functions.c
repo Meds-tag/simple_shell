@@ -1,20 +1,20 @@
 #include "shell.h"
 
 /**
- *_azeeputs - prints an input string
+ *_azeeputs - prints an inpput string
  * @str: the string to be printed
  *
  * Return: Nothing
  */
-void _azeeputs(char *str)
+void _azeeputs(char *sttr)
 {
 	int i = 0;
 
-	if (!str)
+	if (!sttr)
 		return;
-	while (str[i] != '\0')
+	while (sttr[i] != '\0')
 	{
-		_azeeputchar(str[i]);
+		_azeeputchar(sttr[i]);
 		i++;
 	}
 }
