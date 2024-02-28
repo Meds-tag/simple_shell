@@ -40,7 +40,7 @@ int _azeatoi(char *cs)
 	int i, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (i = 0;  s[i] != '\0' && flag != 2; i++)
+	for (i = 0;  cs[i] != '\0' && flag != 2; i++)
 	{
 		if (cs[i] == '-')
 			sign *= -1;
