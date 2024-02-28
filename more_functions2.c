@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * _erratoi - converts a string to an integer
+ * _azeerratoi - converts a string to an integer
  * @s: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _erratoi(char *s)
+int _azeerratoi(char *s)
 {
 	int i = 0;
 	unsigned long int result = 0;
@@ -29,33 +29,33 @@ int _erratoi(char *s)
 }
 
 /**
- * print_error - prints an error message
+ * azeprint_error - prints an error message
  * @info: the parameter & return info struct
  * @estr: string containing specified error type
  * Return: 0 if no numbers in string, converted number otherwise
  *        -1 on error
  */
-void print_error(info_t *info, char *estr)
+void azeprint_error(info_t *info, char *estr)
 {
-	_eputs(info->fname);
-	_eputs(": ");
-	print_d(info->line_count, STDERR_FILENO);
-	_eputs(": ");
-	_eputs(info->argv[0]);
-	_eputs(": ");
-	_eputs(estr);
+	_azeeputs(info->fname);
+	_azeeputs(": ");
+	azeprint_d(info->line_count, STDERR_FILENO);
+	_azeeputs(": ");
+	_azeeputs(info->argv[0]);
+	_azeeputs(": ");
+	_azeeputs(estr);
 }
 
 /**
- * print_d - function prints a decimal (integer) number (base 10)
+ * azeprint_d - function prints a decimal (integer) number (base 10)
  * @input: the input
  * @fd: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int print_d(int input, int fd)
+int azeprint_d(int input, int fd)
 {
-	int (*__putchar)(char) = _putchar;
+	int (*__azeputchar)(char) = _azeputchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
@@ -64,7 +64,7 @@ int print_d(int input, int fd)
 	if (input < 0)
 	{
 		_abs_ = -input;
-		__putchar('-');
+		__azeputchar('-');
 		count++;
 	}
 	else
@@ -74,26 +74,26 @@ int print_d(int input, int fd)
 	{
 		if (_abs_ / i)
 		{
-			__putchar('0' + current / i);
+			__azeputchar('0' + current / i);
 			count++;
 		}
 		current %= i;
 	}
-	__putchar('0' + current);
+	__azeputchar('0' + current);
 	count++;
 
 	return (count);
 }
 
 /**
- * convert_number - converter function, a clone of itoa
+ * azeconvert_number - converter function, a clone of itoa
  * @num: number
  * @base: base
  * @flags: argument flags
  *
  * Return: string
  */
-char *convert_number(long int num, int base, int flags)
+char *azeconvert_number(long int num, int base, int flags)
 {
 	static char *array;
 	static char buffer[50];
@@ -122,12 +122,12 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - function replaces first instance of '#' with '\0'
+ * azeremove_comments - function replaces first instance of '#' with '\0'
  * @buf: address of the string to modify
  *
  * Return: Always 0;
  */
-void remove_comments(char *buf)
+void azeremove_comments(char *buf)
 {
 	int i;
 
