@@ -15,7 +15,7 @@ int hsh(info_t *nfo, char **iav)
 	while (r != -1 && builtin_ret != -2)
 	{
 		azeclear_info(nfo);
-		if (azeinteractive(info))
+		if (azeinteractive(nfo))
 			_azeputs("$ ");
 		_azeeputchar(BUF_FLUSH);
 		r = azeget_input(nfo);
@@ -61,7 +61,7 @@ void azefind_cmd(info_t *nfo)
 		nfo->linecount_flag = 0;
 	}
 	for (i = 0, k = 0; nfo->arg[i]; i++)
-		if (!azeis_delim(info->arg[i], " \t\n"))
+		if (!azeis_delim(nfo->arg[i], " \t\n"))
 			k++;
 	if (!k)
 		return;
@@ -151,9 +151,9 @@ void azefork_cmd(info_t *nfo)
 	else
 	{
 		wait(&(nfo->status));
-		if (WIFEXITED(info->status))
+		if (WIFEXITED(nfo->status))
 		{
-			info->status = WEXITSTATUS(nfo->status);
+			nfo->status = WEXITSTATUS(nfo->status);
 			if (nfo->status == 126)
 				azeprint_error(nfo, "Permission denied\n");
 		}
