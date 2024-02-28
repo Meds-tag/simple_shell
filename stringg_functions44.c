@@ -2,22 +2,22 @@
 
 /**
  * **azestrtow - splits a string into words. Repeat delimiters are ignored
- * @dstr: the input string
+ * @dr: the input string
  * @qd: the delimeter string
  * Return: a pointer to an arr ay of strings, or NULL on failure
  */
 
-char **azestrtow(char *dstr, char *qd)
+char **azestrtow(char *dr, char *qd)
 {
 	int i, j, k, m, numwords = 0;
 	char **s;
 
-	if (dstr == NULL || dstr[0] == 0)
+	if (dr == NULL || dr[0] == 0)
 		return (NULL);
 	if (!qd)
 		qd = " ";
-	for (i = 0; dstr[i] != '\0'; i++)
-		if (!azeis_delim(dstr[i], qd) && (azeis_delim(dstr[i + 1], qd) || !dstr[i + 1]))
+	for (i = 0; dr[i] != '\0'; i++)
+		if (!azeis_delim(dr[i], qd) && (azeis_delim(dr[i + 1], qd) || !dr[i + 1]))
 			numwords++;
 
 	if (numwords == 0)
@@ -27,10 +27,10 @@ char **azestrtow(char *dstr, char *qd)
 		return (NULL);
 	for (i = 0, j = 0; j < numwords; j++)
 	{
-		while (azeis_delim(dstr[i], qd))
+		while (azeis_delim(dr[i], qd))
 			i++;
 		k = 0;
-		while (!azeis_delim(dstr[i + k], qd) && dstr[i + k])
+		while (!azeis_delim(dr[i + k], qd) && dr[i + k])
 			k++;
 		s[j] = malloc((k + 1) * sizeof(char));
 		if (!s[j])
@@ -41,7 +41,7 @@ char **azestrtow(char *dstr, char *qd)
 			return (NULL);
 		}
 		for (m = 0; m < k; m++)
-			s[j][m] = dstr[i++];
+			s[j][m] = dr[i++];
 		s[j][m] = 0;
 	}
 	s[j] = NULL;
