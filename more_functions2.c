@@ -60,7 +60,7 @@ int azeprint_d(int input, int fd)
 	unsigned int _abs_, current;
 
 	if (fd == STDERR_FILENO)
-		__putchar = _eputchar;
+		__azeputchar = _azeeputchar;
 	if (input < 0)
 	{
 		_abs_ = -input;
