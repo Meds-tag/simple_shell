@@ -52,7 +52,7 @@ int _azemycd(info_t *innfo)
 
 /**
  * _azemyhelp - changes the current directory of the process
- * @info: Structure containing potential arguments. Used to maintain
+ * @innfo: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
@@ -69,7 +69,7 @@ int _azemyhelp(info_t *inffo)
 
 /**
  * _azemyexit - exits the shell
- * @info: Structure ccontaining potential arguments. Used to maintain
+ * @innfo: Structure ccontaining potential arguments. Used to maintain
  *          constant function pprototype.
  *  Return: exits wiith a given exit status
  *         (0) if info.argv[0] != "exit"
