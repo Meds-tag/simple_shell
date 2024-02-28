@@ -2,16 +2,16 @@
 
 /**
  * azebfree - frees a pointer and NULLs the address
- * @ptr: address of the pointer to free
+ * @dttr: address of the pointer to free
  *
  * Return: 1 if freed, otherwise 0.
  */
-int azebfree(void **ptr)
+int azebfree(void **dttr)
 {
-	if (ptr && *ptr)
+	if (dttr && *dttr)
 	{
-		free(*ptr);
-		*ptr = NULL;
+		free(*dttr);
+		*dttr = NULL;
 		return (1);
 	}
 	return (0);
