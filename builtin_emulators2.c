@@ -1,19 +1,6 @@
 #include "shell.h"
 
 /**
- * _azemyhistory - displays the history list, one command by line, preceded
- *              with line numbers, starting at 0.
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
- */
-int _azemyhistory(info_t *info)
-{
-	azeprint_list(info->history);
-	return (0);
-}
-
-/**
  * azeunset_alias - sets alias to string
  * @info: parameter struct
  * @str: the string alias
@@ -37,11 +24,24 @@ int azeunset_alias(info_t *info, char *str)
 }
 
 /**
- * azeset_alias - sets alias to string
+ * _azemyhistory - displays the hisstory list, one command by line, preceded
+ *              with line numbers, starting at 0.
+ * @info: Structure containning potential arguments. Used to maintain
+ *        constant functiion prototype.
+ *  Return: Always 0
+ */
+int _azemyhistory(info_t *info)
+{
+	azeprint_list(info->history);
+	return (0);
+}
+
+/**
+ * azeset_alias - sets aliaas to string
  * @info: parameter struct
  * @str: the string alias
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on succcess, 1 on error
  */
 int azeset_alias(info_t *info, char *str)
 {
@@ -58,10 +58,10 @@ int azeset_alias(info_t *info, char *str)
 }
 
 /**
- * azeprint_alias - prints an alias string
+ * azeprint_alias - prinnts an alias string
  * @node: the alias node
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Alwayys 0 on success, 1 on error
  */
 int azeprint_alias(list_t *node)
 {
