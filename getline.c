@@ -2,27 +2,27 @@
 
 /**
  * azeinput_buf - buffers chained commands
- * @info: parameter struct
+ * @iznfo: parameter struct
  * @buf: address of buffer
  * @len: address of len var
  *
  * Return: bytes read
  */
-ssize_t azeinput_buf(info_t *info, char **buf, size_t *len)
+ssize_t azeinput_buf(info_t *iznfo, char **buf, size_t *len)
 {
 	ssize_t r = 0;
 	size_t len_p = 0;
 
 	if (!*len) /* if nothing left in the buffer, fill it */
 	{
-		/*bfree((void **)info->cmd_buf);*/
+		/*bfree((void **)iznfo->cmd_buf);*/
 		free(*buf);
 		*buf = NULL;
 		signal(SIGINT, azesigintHandler);
 #if USE_GETLINE
 		r = getline(buf, &len_p, stdin);
 #else
-		r = _azegetline(info, buf, &len_p);
+		r = _azegetline(iznfo, buf, &len_p);
 #endif
 		if (r > 0)
 		{
@@ -31,13 +31,13 @@ ssize_t azeinput_buf(info_t *info, char **buf, size_t *len)
 				(*buf)[r - 1] = '\0'; /* remove trailing newline */
 				r--;
 			}
-			info->linecount_flag = 1;
+			iznfo->linecount_flag = 1;
 			azeremove_comments(*buf);
-			azebuild_history_list(info, *buf, info->histcount++);
+			azebuild_history_list(iznfo, *buf, iznfo->histcount++);
 			/* if (_strchr(*buf, ';')) is this a command chain? */
 			{
 				*len = r;
-				info->cmd_buf = buf;
+				iznfo->cmd_buf = buf;
 			}
 		}
 	}
@@ -46,19 +46,19 @@ ssize_t azeinput_buf(info_t *info, char **buf, size_t *len)
 
 /**
  * azeget_input - gets a line minus the newline
- * @info: parameter struct
+ * @nfo: parameter struct
  *
  * Return: bytes read
  */
-ssize_t azeget_input(info_t *info)
+ssize_t azeget_input(info_t *nfo)
 {
 	static char *buf; /* the ';' command chain buffer */
 	static size_t i, j, len;
 	ssize_t r = 0;
-	char **buf_p = &(info->arg), *p;
+	char **buf_p = &(nfo->arg), *p;
 
 	_azeputchar(BUF_FLUSH);
-	r = azeinput_buf(info, &buf, &len);
+	r = azeinput_buf(nfo, &buf, &len);
 	if (r == -1) /* EOF */
 		return (-1);
 	if (len)	/* we have commands left in the chain buffer */
@@ -66,10 +66,10 @@ ssize_t azeget_input(info_t *info)
 		j = i; /* init new iterator to current buf position */
 		p = buf + i; /* get pointer for return */
 
-		azecheck_chain(info, buf, &j, i, len);
+		azecheck_chain(nfo, buf, &j, i, len);
 		while (j < len) /* iterate to semicolon or end */
 		{
-			if (azeis_chain(info, buf, &j))
+			if (azeis_chain(nfo, buf, &j))
 				break;
 			j++;
 		}
@@ -78,7 +78,7 @@ ssize_t azeget_input(info_t *info)
 		if (i >= len) /* reached end of buffer? */
 		{
 			i = len = 0; /* reset position and length */
-			info->cmd_buf_type = CMD_NORM;
+			nfo->cmd_buf_type = CMD_NORM;
 		}
 
 		*buf_p = p; /* pass back pointer to current command position */
@@ -91,19 +91,19 @@ ssize_t azeget_input(info_t *info)
 
 /**
  * azeread_buf - reads a buffer
- * @info: parameter struct
+ * @ionfo: parameter struct
  * @buf: buffer
  * @i: size
  *
  * Return: r
  */
-ssize_t azeread_buf(info_t *info, char *buf, size_t *i)
+ssize_t azeread_buf(info_t *ionfo, char *buf, size_t *i)
 {
 	ssize_t r = 0;
 
 	if (*i)
 		return (0);
-	r = read(info->readfd, buf, READ_BUF_SIZE);
+	r = read(ionfo->readfd, buf, READ_BUF_SIZE);
 	if (r >= 0)
 		*i = r;
 	return (r);
@@ -111,13 +111,13 @@ ssize_t azeread_buf(info_t *info, char *buf, size_t *i)
 
 /**
  * _azegetline - gets the next line of input from STDIN
- * @info: parameter struct
+ * @nfo: parameter struct
  * @ptr: address of pointer to buffer, preallocated or NULL
  * @length: size of preallocated ptr buffer if not NULL
  *
  * Return: s
  */
-int _azegetline(info_t *info, char **ptr, size_t *length)
+int _azegetline(info_t *nfo, char **ptr, size_t *length)
 {
 	static char buf[READ_BUF_SIZE];
 	static size_t i, len;
@@ -131,7 +131,7 @@ int _azegetline(info_t *info, char **ptr, size_t *length)
 	if (i == len)
 		i = len = 0;
 
-	r = azeread_buf(info, buf, &len);
+	r = azeread_buf(nfo, buf, &len);
 	if (r == -1 || (r == 0 && len == 0))
 		return (-1);
 
@@ -158,11 +158,11 @@ int _azegetline(info_t *info, char **ptr, size_t *length)
 
 /**
  * azesigintHandler - blocks ctrl-C
- * @sig_num: the signal number
+ * @jig_num: the signal number
  *
  * Return: void
  */
-void azesigintHandler(__attribute__((unused))int sig_num)
+void azesigintHandler(__attribute__((unused))int jig_num)
 {
 	_azeputs("\n");
 	_azeputs("$ ");
