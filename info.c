@@ -2,73 +2,73 @@
 
 /**
  * azeclear_info - initializes info_t struct
- * @info: struct address
+ * @nfo: struct address
  */
-void azeclear_info(info_t *info)
+void azeclear_info(info_t *nfo)
 {
-	info->arg = NULL;
-	info->argv = NULL;
-	info->path = NULL;
-	info->argc = 0;
+	nfo->arg = NULL;
+	nfo->argv = NULL;
+	nfo->path = NULL;
+	nfo->argc = 0;
 }
 
 /**
  * azeset_info - initializes info_t struct
- * @info: struct address
+ * @nnfo: struct address
  * @av: argument vector
  */
-void azeset_info(info_t *info, char **av)
+void azeset_info(info_t *nnfo, char **av)
 {
 	int i = 0;
 
-	info->fname = av[0];
-	if (info->arg)
+	nnfo->fname = av[0];
+	if (nfo->arg)
 	{
-		info->argv = azestrtow(info->arg, " \t");
-		if (!info->argv)
+		nnfo->argv = azestrtow(nnfo->arg, " \t");
+		if (!nnfo->argv)
 		{
 
-			info->argv = malloc(sizeof(char *) * 2);
-			if (info->argv)
+			nnfo->argv = malloc(sizeof(char *) * 2);
+			if (nnfo->argv)
 			{
-				info->argv[0] = _azestrdup(info->arg);
-				info->argv[1] = NULL;
+				nnfo->argv[0] = _azestrdup(info->arg);
+				nnfo->argv[1] = NULL;
 			}
 		}
-		for (i = 0; info->argv && info->argv[i]; i++)
+		for (i = 0; nnfo->argv && nnfo->argv[i]; i++)
 			;
-		info->argc = i;
+		nnfo->argc = i;
 
-		azereplace_alias(info);
-		azereplace_vars(info);
+		azereplace_alias(nnfo);
+		azereplace_vars(nnfo);
 	}
 }
 
 /**
  * azefree_info - frees info_t struct fields
- * @info: struct address
+ * @winfo: struct address
  * @all: true if freeing all fields
  */
-void azefree_info(info_t *info, int all)
+void azefree_info(info_t *winfo, int all)
 {
-	azeffree(info->argv);
-	info->argv = NULL;
-	info->path = NULL;
+	azeffree(winfo->argv);
+	winfo->argv = NULL;
+	winfo->path = NULL;
 	if (all)
 	{
-		if (!info->cmd_buf)
-			free(info->arg);
-		if (info->env)
-			azefree_list(&(info->env));
-		if (info->history)
-			azefree_list(&(info->history));
-		if (info->alias)
-			azefree_list(&(info->alias));
-		azeffree(info->environ);
-			info->environ = NULL;
-		azebfree((void **)info->cmd_buf);
-		if (info->readfd > 2)
-			close(info->readfd);
+		if (!winfo->cmd_buf)
+			free(winfo->arg);
+		if (winfo->env)
+			azefree_list(&(winfo->env));
+		if (winfo->history)
+			azefree_list(&(winfo->history));
+		if (winfo->alias)
+			azefree_list(&(winfo->alias));
+		azeffree(winfo->environ);
+			winfo->environ = NULL;
+		azebfree((void **)winfo->cmd_buf);
+		if (winfo->readfd > 2)
+			close(winfo->readfd);
 		_azeputchar(BUF_FLUSH);
 	}
 }
