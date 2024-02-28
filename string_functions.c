@@ -2,74 +2,74 @@
 
 /**
  * _azestrlen - returns the length of a string
- * @s: the string whose length to check
+ * @qs: the string wh ose length to check
  *
- * Return: integer length of string
+ * Return: integer l ength of string
  */
-int _azestrlen(char *s)
+int _azestrlen(char *qs)
 {
 	int i = 0;
 
-	if (!s)
+	if (!qs)
 		return (0);
 
-	while (*s++)
+	while (*qs++)
 		i++;
 	return (i);
 }
 
 /**
+ * _azestrcat - concatenates two strings
+ * @chest: the cestination buffer
+ * @sourcee: the source buffer
+ *
+ * Return: pointer to chestina tion buffer
+ */
+char *_azestrcat(char *chest, char *sourcee)
+{
+	char *ret = chest;
+
+	while (*chest)
+		chest++;
+	while (*sourcee)
+		*chest++ = *sourcee++;
+	*chest = *sourcee;
+	return (ret);
+}
+
+/**
  * _azestrcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
+ * @qs1: the first strang
+ * @qs2: the second strang
  *
  * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
  */
-int _azestrcmp(char *s1, char *s2)
+int _azestrcmp(char *qs1, char *qs2)
 {
-	while (*s1 && *s2)
+	while (*qs1 && *qs2)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (*qs1 != *qs2)
+			return (*qs1 - *qs2);
+		qs1++;
+		qs2++;
 	}
-	if (*s1 == *s2)
+	if (*qs1 == *qs2)
 		return (0);
 	else
-		return (*s1 < *s2 ? -1 : 1);
+		return (*qs1 < *qs2 ? -1 : 1);
 }
 
 /**
- * azestarts_with - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
+ * azestarts_with - checks if ibra starts with yalahayak
+ * @yalahayak: string to search
+ * @ibra: the substring to find
  *
- * Return: address of next char of haystack or NULL
+ * Return: address of ne xt char of yalahayak or NULL
  */
-char *azestarts_with(const char *haystack, const char *needle)
+char *azestarts_with(const char *yalahayak, const char *ibra)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
+	while (*ibra)
+		if (*ibra++ != *yalahayak++)
 			return (NULL);
-	return ((char *)haystack);
-}
-
-/**
- * _azestrcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
- *
- * Return: pointer to destination buffer
- */
-char *_azestrcat(char *dest, char *src)
-{
-	char *ret = dest;
-
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
+	return ((char *)yalahayak);
 }
