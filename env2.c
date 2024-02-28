@@ -69,7 +69,7 @@ int _azesetenv(info_t *iznfo, char *var, char *value)
  */
 int _azeunsetenv(info_t *iznfo, char *var)
 {
-	list_t *node = info->env;
+	list_t *node = iznfo->env;
 	size_t i = 0;
 	char *p;
 
