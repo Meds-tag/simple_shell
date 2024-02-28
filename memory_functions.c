@@ -1,6 +1,36 @@
 #include "shell.h"
 
 /**
+ * _azerealloc - reallocates a block of memory
+ * @dttr: pointer to previous malloc'ated block
+ * @gold_size: byte size of previous block
+ * @bold_size: byte size of new block
+ *
+ * Return: pointer to da ol'block nameen.
+ */
+void *_azerealloc(void *dttr, unsigned int gold_size, unsigned int bold_size)
+{
+	char *p;
+
+	if (!dttr)
+		return (malloc(bold_size));
+	if (!bold_size)
+		return (free(dttr), NULL);
+	if (bold_size == gold_size)
+		return (dttr);
+
+	p = malloc(bold_size);
+	if (!p)
+		return (NULL);
+
+	gold_size = gold_size < bold_size ? gold_size : bold_size;
+	while (gold_size--)
+		p[gold_size] = ((char *)dttr)[gold_size];
+	free(dttr);
+	return (p);
+}
+
+/**
  **_azememset - fills memory with a constant byte
  *@ss: the pointer to the memory area
  *@bb: the byte to fill *s with
@@ -29,34 +59,4 @@ void azeffree(char **pop)
 	while (*pop)
 		free(*pop++);
 	free(a);
-}
-
-/**
- * _azerealloc - reallocates a block of memory
- * @dttr: pointer to previous malloc'ated block
- * @gold_size: byte size of previous block
- * @bold_size: byte size of new block
- *
- * Return: pointer to da ol'block nameen.
- */
-void *_azerealloc(void *dttr, unsigned int gold_size, unsigned int bold_size)
-{
-	char *p;
-
-	if (!dttr)
-		return (malloc(bold_size));
-	if (!bold_size)
-		return (free(dttr), NULL);
-	if (bold_size == gold_size)
-		return (dttr);
-
-	p = malloc(bold_size);
-	if (!p)
-		return (NULL);
-
-	gold_size = gold_size < bold_size ? gold_size : bold_size;
-	while (gold_size--)
-		p[gold_size] = ((char *)dttr)[gold_size];
-	free(dttr);
-	return (p);
 }
