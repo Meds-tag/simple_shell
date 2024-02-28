@@ -2,23 +2,23 @@
 
 /**
  * _azeerratoi - converts a string to an integer
- * @s: the string to be converted
+ * @cs: the string to be converted
  * Return: 0 if no numbers in string, converted number otherwise
  *       -1 on error
  */
-int _azeerratoi(char *s)
+int _azeerratoi(char *cs)
 {
 	int i = 0;
 	unsigned long int result = 0;
 
-	if (*s == '+')
-		s++;  /* TODO: why does this make main return 255? */
-	for (i = 0;  s[i] != '\0'; i++)
+	if (*cs == '+')
+		cs++;  /* TODO: why does this make main return 255? */
+	for (i = 0;  cs[i] != '\0'; i++)
 	{
-		if (s[i] >= '0' && s[i] <= '9')
+		if (cs[i] >= '0' && cs[i] <= '9')
 		{
 			result *= 10;
-			result += (s[i] - '0');
+			result += (cs[i] - '0');
 			if (result > INT_MAX)
 				return (-1);
 		}
@@ -29,46 +29,28 @@ int _azeerratoi(char *s)
 }
 
 /**
- * azeprint_error - prints an error message
- * @info: the parameter & return info struct
- * @estr: string containing specified error type
- * Return: 0 if no numbers in string, converted number otherwise
- *        -1 on error
- */
-void azeprint_error(info_t *info, char *estr)
-{
-	_azeeputs(info->fname);
-	_azeeputs(": ");
-	azeprint_d(info->line_count, STDERR_FILENO);
-	_azeeputs(": ");
-	_azeeputs(info->argv[0]);
-	_azeeputs(": ");
-	_azeeputs(estr);
-}
-
-/**
- * azeprint_d - function prints a decimal (integer) number (base 10)
- * @input: the input
- * @fd: the filedescriptor to write to
+ * azeprint_d - function prints a decimal (integer) number (bass 10)
+ * @inpuget: the inpuget
+ * @ffd: the filedescriptor to write to
  *
  * Return: number of characters printed
  */
-int azeprint_d(int input, int fd)
+int azeprint_d(int inpuget, int ffd)
 {
 	int (*__azeputchar)(char) = _azeputchar;
 	int i, count = 0;
 	unsigned int _abs_, current;
 
-	if (fd == STDERR_FILENO)
+	if (ffd == STDERR_FILENO)
 		__azeputchar = _azeeputchar;
-	if (input < 0)
+	if (inpuget < 0)
 	{
-		_abs_ = -input;
+		_abs_ = -inpuget;
 		__azeputchar('-');
 		count++;
 	}
 	else
-		_abs_ = input;
+		_abs_ = inpuget;
 	current = _abs_;
 	for (i = 1000000000; i > 1; i /= 10)
 	{
@@ -86,34 +68,52 @@ int azeprint_d(int input, int fd)
 }
 
 /**
+ * azeprint_error - prints an error message
+ * @nfo: the parameter & return info struct
+ * @estr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
+ */
+void azeprint_error(info_t *nfo, char *estr)
+{
+	_azeeputs(nfo->fname);
+	_azeeputs(": ");
+	azeprint_d(nfo->line_count, STDERR_FILENO);
+	_azeeputs(": ");
+	_azeeputs(nfo->argv[0]);
+	_azeeputs(": ");
+	_azeeputs(estr);
+}
+
+/**
  * azeconvert_number - converter function, a clone of itoa
- * @num: number
- * @base: base
- * @flags: argument flags
+ * @numr: number
+ * @bass: bass
+ * @rayat: argument rayat
  *
  * Return: string
  */
-char *azeconvert_number(long int num, int base, int flags)
+char *azeconvert_number(long int numr, int bass, int rayat)
 {
 	static char *array;
 	static char buffer[50];
 	char sign = 0;
 	char *ptr;
-	unsigned long n = num;
+	unsigned long n = numr;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(rayat & CONVERT_UNSIGNED) && numr < 0)
 	{
-		n = -num;
+		n = -numr;
 		sign = '-';
 
 	}
-	array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	array = rayat & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buffer[49];
 	*ptr = '\0';
 
 	do	{
-		*--ptr = array[n % base];
-		n /= base;
+		*--ptr = array[n % bass];
+		n /= bass;
 	} while (n != 0);
 
 	if (sign)
@@ -123,18 +123,18 @@ char *azeconvert_number(long int num, int base, int flags)
 
 /**
  * azeremove_comments - function replaces first instance of '#' with '\0'
- * @buf: address of the string to modify
+ * @bunf: address of the string to modify
  *
  * Return: Always 0;
  */
-void azeremove_comments(char *buf)
+void azeremove_comments(char *bunf)
 {
 	int i;
 
-	for (i = 0; buf[i] != '\0'; i++)
-		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
+	for (i = 0; bunf[i] != '\0'; i++)
+		if (bunf[i] == '#' && (!i || bunf[i - 1] == ' '))
 		{
-			buf[i] = '\0';
+			bunf[i] = '\0';
 			break;
 		}
 }
