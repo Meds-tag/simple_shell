@@ -2,6 +2,7 @@
 
 /**
  * _azeeputchar - writes the charactter c to stderr
+ *added line
  * @c: The character to print
  *
  * Return: On success 1.
