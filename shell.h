@@ -190,7 +190,7 @@ void azesigintHandler(int);
 /* info.c module */
 void azeclear_info(info_t *);
 void azeset_info(info_t *, char **);
-void azeree_info(info_t *, int);
+void azefree_info(info_t *, int);
 
 /* env.c module */
 char *_azegetenv(info_t *, const char *);
