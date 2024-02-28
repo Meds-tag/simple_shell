@@ -66,7 +66,7 @@ void azefind_cmd(info_t *nfo)
 	if (!k)
 		return;
 
-	path = azefind_path(nfo, _azegetenv(info, "PATH="), nfo->argv[0]);
+	path = azefind_path(nfo, _azegetenv(nfo, "PATH="), nfo->argv[0]);
 	if (path)
 	{
 		nfo->path = path;
