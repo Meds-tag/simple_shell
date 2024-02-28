@@ -2,12 +2,12 @@
 
 /**
  * azeunset_alias - sets alias to string
- * @info: parameter struct
- * @str: the string alias
+ * @innfo: parameter struct
+ * @sttr: the string alias
  *
  * Return: Always 0 on success, 1 on error
  */
-int azeunset_alias(info_t *info, char *sttr)
+int azeunset_alias(info_t *innfo, char *sttr)
 {
 	char *p, c;
 	int ret;
@@ -17,8 +17,8 @@ int azeunset_alias(info_t *info, char *sttr)
 		return (1);
 	c = *p;
 	*p = 0;
-	ret = azedelete_node_at_index(&(info->alias),
-		azeget_node_index(info->alias, azenode_starts_with(info->alias, sttr, -1)));
+	ret = azedelete_node_at_index(&(innfo->alias),
+		azeget_node_index(innfo->alias, azenode_starts_with(innfo->alias, sttr, -1)));
 	*p = c;
 	return (ret);
 }
@@ -26,7 +26,7 @@ int azeunset_alias(info_t *info, char *sttr)
 /**
  * azeset_alias - sets aliaas to string
  * @info: parameter struct
- * @str: the string alias
+ * @sttr: the string alias
  *
  * Return: Always 0 on succcess, 1 on error
  */
@@ -47,7 +47,7 @@ int azeset_alias(info_t *info, char *sttr)
 /**
  * _azemyhistory - displays the hisstory list, one command by line, preceded
  *              with line numbers, starting at 0.
- * @info: Structure containning potential arguments. Used to maintain
+ * @innfo: Structure containning potential arguments. Used to maintain
  *        constant functiion prototype.
  *  Return: Always 0
  */
@@ -59,7 +59,7 @@ int _azemyhistory(info_t *innfo)
 
 /**
  * azeprint_alias - prinnts an alias string
- * @node: the alias node
+ * @nnode: the alias node
  *
  * Return: Alwayys 0 on success, 1 on error
  */
@@ -82,7 +82,7 @@ int azeprint_alias(list_t *nnode)
 
 /**
  * _azemyalias - mimics the alias builtin (man alias)
- * @info: Structure containing potential arguments. Used to maintain
+ * @iinfo: Structure containing potential arguments. Used to maintain
  *          constant function prototype.
  *  Return: Always 0
  */
@@ -108,7 +108,7 @@ int _azemyalias(info_t *iinfo)
 		if (p)
 			azeset_alias(iinfo, iinfo->argv[i]);
 		else
-			azeprint_alias(azenode_starts_with(iinfo->alias, info->argv[i], '='));
+			azeprint_alias(azenode_starts_with(iinfo->alias, iinfo->argv[i], '='));
 	}
 
 	return (0);
