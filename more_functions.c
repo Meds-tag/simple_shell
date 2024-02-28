@@ -1,19 +1,9 @@
 #include "shell.h"
 
 /**
- * azeinteractive - returns true if shell is interactive mode
- * @nfo: struct address
- *olo
- * Return: 1 if interactive mode, 0 otherwise
- */
-int azeinteractive(info_t *nfo)
-{
-	return (isatty(STDIN_FILENO) && nfo->readfd <= 2);
-}
-
-/**
  * azeis_delim - checks if character is a delimeter
  * @r: the char to check
+ *lol
  * @elim: the delimeter string
  * Return: 1 if true, 0 if false
  */
@@ -71,4 +61,15 @@ int _azeatoi(char *cs)
 		output = result;
 
 	return (output);
+}
+
+/**
+ * azeinteractive - returns true if shell is interactive mode
+ * @nfo: struct address
+ *olo
+ * Return: 1 if interactive mode, 0 otherwise
+ */
+int azeinteractive(info_t *nfo)
+{
+	return (isatty(STDIN_FILENO) && nfo->readfd <= 2);
 }
