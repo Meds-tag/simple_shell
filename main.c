@@ -1,16 +1,17 @@
 #include "shell.h"
 
 /**
- * main - entry point
+ * main - entry point ok ok
  *addline
- * @bc: arg count
- * @uur: arg vector
+ * @bc: arg count unders
+ * @uur: arg vector unders
  *
- * Return: 0 on success, 1 on error
+ * Return: 0 on success, 1 on error under
+ *add
  */
 int main(int bc, char **uur)
 {
-	info_t info[] = { INFO_INIT };
+	info_t infoo[] = { INFO_INIT };
 	int fd = 2;
 
 	asm ("mov %1, %0\n\t"
@@ -36,10 +37,10 @@ int main(int bc, char **uur)
 			}
 			return (EXIT_FAILURE);
 		}
-		info->readfd = fd;
+		infoo->readfd = fd;
 	}
-	azepopulate_env_list(info);
-	azeread_history(info);
-	hsh(info, uur);
+	azepopulate_env_list(infoo);
+	azeread_history(infoo);
+	hsh(infoo, uur);
 	return (EXIT_SUCCESS);
 }
