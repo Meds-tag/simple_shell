@@ -7,18 +7,18 @@
  *
  * Return: Always 0 on success, 1 on error
  */
-int azeunset_alias(info_t *info, char *str)
+int azeunset_alias(info_t *info, char *sttr)
 {
 	char *p, c;
 	int ret;
 
-	p = _azestrchr(str, '=');
+	p = _azestrchr(sttr, '=');
 	if (!p)
 		return (1);
 	c = *p;
 	*p = 0;
 	ret = azedelete_node_at_index(&(info->alias),
-		azeget_node_index(info->alias, azenode_starts_with(info->alias, str, -1)));
+		azeget_node_index(info->alias, azenode_starts_with(info->alias, sttr, -1)));
 	*p = c;
 	return (ret);
 }
@@ -30,9 +30,9 @@ int azeunset_alias(info_t *info, char *str)
  *        constant functiion prototype.
  *  Return: Always 0
  */
-int _azemyhistory(info_t *info)
+int _azemyhistory(info_t *innfo)
 {
-	azeprint_list(info->history);
+	azeprint_list(innfo->history);
 	return (0);
 }
 
@@ -43,18 +43,18 @@ int _azemyhistory(info_t *info)
  *
  * Return: Always 0 on succcess, 1 on error
  */
-int azeset_alias(info_t *info, char *str)
+int azeset_alias(info_t *info, char *sttr)
 {
 	char *p;
 
-	p = _azestrchr(str, '=');
+	p = _azestrchr(sttr, '=');
 	if (!p)
 		return (1);
 	if (!*++p)
-		return (azeunset_alias(info, str));
+		return (azeunset_alias(info, sttr));
 
-	azeunset_alias(info, str);
-	return (azeadd_node_end(&(info->alias), str, 0) == NULL);
+	azeunset_alias(info, sttr);
+	return (azeadd_node_end(&(info->alias), sttr, 0) == NULL);
 }
 
 /**
@@ -63,14 +63,14 @@ int azeset_alias(info_t *info, char *str)
  *
  * Return: Alwayys 0 on success, 1 on error
  */
-int azeprint_alias(list_t *node)
+int azeprint_alias(list_t *nnode)
 {
 	char *p = NULL, *a = NULL;
 
-	if (node)
+	if (nnode)
 	{
-		p = _azestrchr(node->str, '=');
-		for (a = node->str; a <= p; a++)
+		p = _azestrchr(nnode->str, '=');
+		for (a = nnode->str; a <= p; a++)
 			_azeputchar(*a);
 		_azeputchar('\'');
 		_azeputs(p + 1);
@@ -86,15 +86,15 @@ int azeprint_alias(list_t *node)
  *          constant function prototype.
  *  Return: Always 0
  */
-int _azemyalias(info_t *info)
+int _azemyalias(info_t *iinfo)
 {
 	int i = 0;
 	char *p = NULL;
 	list_t *node = NULL;
 
-	if (info->argc == 1)
+	if (iinfo->argc == 1)
 	{
-		node = info->alias;
+		node = iinfo->alias;
 		while (node)
 		{
 			azeprint_alias(node);
@@ -102,13 +102,13 @@ int _azemyalias(info_t *info)
 		}
 		return (0);
 	}
-	for (i = 1; info->argv[i]; i++)
+	for (i = 1; iinfo->argv[i]; i++)
 	{
-		p = _azestrchr(info->argv[i], '=');
+		p = _azestrchr(iinfo->argv[i], '=');
 		if (p)
-			azeset_alias(info, info->argv[i]);
+			azeset_alias(iinfo, iinfo->argv[i]);
 		else
-			azeprint_alias(azenode_starts_with(info->alias, info->argv[i], '='));
+			azeprint_alias(azenode_starts_with(iinfo->alias, info->argv[i], '='));
 	}
 
 	return (0);
