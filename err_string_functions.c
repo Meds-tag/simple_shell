@@ -20,24 +20,24 @@ void _azeeputs(char *sttr)
 }
 
 /**
- * _azeeputchar - writes the character c to stderr
+ * _azeeputchar - writes the charactter c to stderr
  * @c: The character to print
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _azeeputchar(char c)
+int _azeeputchar(char cc)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+	if (cc == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
 		write(2, buf, i);
 		i = 0;
 	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
+	if (cc != BUF_FLUSH)
+		buf[i++] = cc;
 	return (1);
 }
 
@@ -49,14 +49,14 @@ int _azeeputchar(char c)
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int _azeputfd(char c, int fd)
+int _azeputfd(char c, int ffd)
 {
 	static int i;
 	static char buf[WRITE_BUF_SIZE];
 
 	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
 	{
-		write(fd, buf, i);
+		write(ffd, buf, i);
 		i = 0;
 	}
 	if (c != BUF_FLUSH)
@@ -71,15 +71,15 @@ int _azeputfd(char c, int fd)
  *
  * Return: the number of chars put
  */
-int _azeputsfd(char *str, int fd)
+int _azeputsfd(char *sttr, int ffd)
 {
 	int i = 0;
 
-	if (!str)
+	if (!sttr)
 		return (0);
-	while (*str)
+	while (*sttr)
 	{
-		i += _azeputfd(*str++, fd);
+		i += _azeputfd(*sttr++, ffd);
 	}
 	return (i);
 }
