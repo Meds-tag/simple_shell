@@ -38,7 +38,7 @@ int _azemysetenv(info_t *inffo)
  *
  * Return: the value
  */
-char *_azegetenv(ionfo_t *info, const char *name)
+char *_azegetenv(info_t *ionfo, const char *name)
 {
 	list_t *node = ionfo->env;
 	char *p;
